@@ -5,9 +5,9 @@ class Solution:
            '}':'{',
            ']':'['}
         for i in s:
-            if i=='(' or i=='{' or i == '[':
+            if i in a.values():
                 b.append(i)
-            if i ==')' or i =='}' or i == ']':
+            if i in a.keys():
                 if b and b[-1]==a[i]:
                     b.pop()
                 else:
