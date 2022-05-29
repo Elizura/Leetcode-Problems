@@ -1,0 +1,16 @@
+def maxOperations(self, nums: List[int], k: int) -> int:
+        nums.sort()
+        l = 0
+        r = len(nums) - 1
+        op = 0
+        for i in range(len(nums)):
+            if nums[l] + nums[r] == k and r > l:
+                op += 1
+                l += 1
+                r -= 1
+            elif nums[l] + nums[r] > k and r > l:
+                r -= 1
+            elif nums[l] + nums[r] < k and r > l:
+                l += 1
+
+        return op
