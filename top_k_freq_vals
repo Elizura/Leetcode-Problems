@@ -1,0 +1,9 @@
+    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+        d={}
+        for i in nums:
+            d.setdefault(i,0)
+            d[i]+=1
+        a= sorted(d.items(), key=lambda x:x[1],reverse=True)
+        a= dict(a)
+        a= list(a)
+        return a[:k]
