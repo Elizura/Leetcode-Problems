@@ -1,9 +1,13 @@
 class Solution:
     def kthSmallest(self, matrix: List[List[int]], k: int) -> int:
         ans = []
-        for i in matrix:
-            for j in i:
-                ans.append(j)
-                
-        ans.sort()
-        return ans[k-1]
+        matrix = sum(matrix, [])
+        heapq.heapify(matrix)
+        i = 0
+        while i < k:
+            a = heapq.heappop(matrix)
+            ans.append(a)
+            i += 1
+            
+        return ans[-1]
+            
