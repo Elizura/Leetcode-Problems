@@ -13,18 +13,18 @@ class Solution:
             max_ = right_child
         if max_ != i:
             arr[max_], arr[i] = arr[i], arr[max_]
-            self.heapify(arr,n,max_)
+            self.heapify(arr,n,max_) #recursion
                 
                 
     #Function to build a Heap from array.
     def buildHeap(self,arr,n):
-        pass
+        for i in range((n//2)-1,-1,-1):
+            Solution.heapify(self,arr,n,i)
         
     
     #Function to sort an array using Heap Sort.    
     def HeapSort(self, arr, n):
-        for i in range((n//2)-1,-1,-1):
-            Solution.heapify(self,arr,n,i)
+        Solution.buildHeap(self, arr, n)
         for i in range(len(arr)-1,0,-1):
             arr[0], arr[i] = arr[i], arr[0]
             Solution.heapify(self,arr,i,0)
