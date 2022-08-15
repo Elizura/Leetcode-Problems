@@ -5,9 +5,11 @@
 #         self.left = left
 #         self.right = right
 class Solution:
-    def findTilt(self, root: Optional[TreeNode]) -> int:
-        self.ans = 0
-        def dfs(root):
+    ans = 0
+    def findTilt(self, root: Optional[TreeNode]) -> int:        
+        ans = 0
+        def dfs(root):            
+            nonlocal ans
             if not root:
                 return 0
             if root and not root.left and not root.right:
@@ -15,8 +17,8 @@ class Solution:
             left = dfs(root.left)
             right = dfs(root.right)
             
-            self.ans += abs(left - right)
+            ans += abs(left - right)
             return left + right + root.val
             
         dfs(root)
-        return self.ans
+        return ans
