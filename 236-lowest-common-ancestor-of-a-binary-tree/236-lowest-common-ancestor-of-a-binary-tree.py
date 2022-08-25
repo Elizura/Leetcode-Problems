@@ -7,8 +7,7 @@
 
 class Solution:
     def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
-        def dfs(node, temp):
-            # print([i.val for i in temp], [[b.val for b in a] for a in path])
+        def dfs(node, temp):            
             if not node:
                 return
             if node.val == target.val:
@@ -40,73 +39,27 @@ class Solution:
             return path_for_p[-1]
         return path_for_q[-1]
         
-#         # path_for_p path_for_q = [], []
-#         path = []
-        
-#         def dfs(node,temp,path):
-#             if not node:
-#                 return
-#             if node.val == p.val:
-#                 path = temp + [node.val]
-#                 return
-#             temp.append(node.val)
-#             dfs(node.right,temp, path)
-#             dfs(node.left,temp, path)
-#             temp.pop()
-#             print(path,121212)
-        
-#         temp = []
-#         target=p
-#         dfs(root,temp, path)
-#         print(path,11111)
-#         path_for_p = path
-        
-#         temp = []
-#         target=q
-#         dfs(root,temp,path)
-#         path_for_q = path
-        
-#         print(path_for_p)
-#         print(path_for_q)
-        
-#         return
-        
-        
-        
-        
-        
-        
-        
-        
-#         def dfs(node):            
+#         a = []
+#         def dfs(node, target):            
 #             if not node: return False
-#             a.append(node.val)
-#             if node.val == p.val:
+#             a.append([node.val])
+#             if node.val == target.val:
 #                 return True                         
-#             if dfs(node.left) or dfs(node.right):                
+#             if dfs(node.left, target) or dfs(node.right, target):  
 #                 return True                        
 #             a.pop()
-#             return False
-        
-#         def dfs1(node):            
-#             if not node: return False
-#             b.append(node.val)
-#             if node.val == q.val:
-#                 return True                         
-#             if dfs1(node.left) or dfs1(node.right):                
-#                 return True
-#             b.pop()            
-#             return False
-        
-        
-#         print(a, b)
+#             return False    
+                                
 #         if not root: return []
-#         dfs(root)
-#         dfs1(root)
-#         i = 0
-#         while i < len(a):
-#             if a[i] != b[i]:
-#                 return TreeNode(a[i - 1])
-#             i += 1
+        
+#         dfs(root, q)
+#         dfs(root, p)        
+#         print(a)
+#         # print(path_p, path_q)
+#         # i = 0
+#         # while i < len(a):
+#         #     if a[i] != b[i]:
+#         #         return TreeNode(a[i - 1])
+#         #     i += 1
                             
             
