@@ -14,7 +14,7 @@ class Solution:
         q1.append(p)
         q2.append(q)
         while q1 and q2:
-            for i in range(min(len(q1), len(q2))):
+            for i in range(len(q1)):
                 a = q1.popleft()
                 b = q2.popleft()
                 if a.val != b.val: return False
