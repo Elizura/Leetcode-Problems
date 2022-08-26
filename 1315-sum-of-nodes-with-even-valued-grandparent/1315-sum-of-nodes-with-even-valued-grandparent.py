@@ -6,8 +6,7 @@
 #         self.right = right
 class Solution:
     def sumEvenGrandparent(self, root: TreeNode) -> int:
-        sumv = 0
-		# Mark the parent with even parent
+        sumv = 0		
         q = collections.deque([(root, 0)])
         while q:
             node, evenG = q.popleft()
