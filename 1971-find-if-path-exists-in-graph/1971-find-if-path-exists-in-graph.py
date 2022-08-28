@@ -5,16 +5,25 @@ class Solution:
         for i in edges:
             dic[i[0]].append(i[1])
             dic[i[1]].append(i[0])
-        q = deque([source])
         seen = set()
-        while q:
-            a = q.popleft()
-            if a == destination:
-                return True
-            for i in dic[a]:
+        def dfs(node):
+            seen.add(node)
+            if node == destination: return True            
+            for i in dic[node]:                
                 if i not in seen:
-                    q.append(i)
-            seen.add(a)
-        return False
+                    if dfs(i): return True
+            return False
+        return dfs(source)
+        # q = deque([source])
+        # seen = set()
+        # while q:
+        #     a = q.popleft()
+        #     if a == destination:
+        #         return True
+        #     for i in dic[a]:
+        #         if i not in seen:
+        #             q.append(i)
+        #     seen.add(a)
+        # return False
         
         
