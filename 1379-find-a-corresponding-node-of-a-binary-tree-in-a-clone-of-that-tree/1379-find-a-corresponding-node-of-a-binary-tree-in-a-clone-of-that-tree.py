@@ -7,12 +7,21 @@
 
 class Solution:
     def getTargetCopy(self, original: TreeNode, cloned: TreeNode, target: TreeNode) -> TreeNode:
-        q = deque([cloned])
-        while q:
-            a = q.popleft()
-            if a.val == target.val: return a
-            if a.left: q.append(a.left)
-            if a.right: q.append(a.right)
+        def inorder(o: TreeNode, c: TreeNode):
+            if o:
+                inorder(o.left, c.left)
+                if o is target:
+                    self.ans = c
+                inorder(o.right, c.right)
+                
+        inorder(original, cloned)
+        return self.ans 
+#         q = deque([cloned])
+#         while q:
+#             a = q.popleft()
+#             if a.val == target.val: return a
+#             if a.left: q.append(a.left)
+#             if a.right: q.append(a.right)
             
         # def dfs(node1, node2):            
         #     if node1.val == target.val: return node2 
