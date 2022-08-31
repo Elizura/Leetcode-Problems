@@ -1,23 +1,34 @@
 class Solution:
     def convertTime(self, current: str, correct: str) -> int: 
         ret = 0
-        ans = 0
+        # ans = 0
         # memo = {}
         current = 60 * int(current[:2]) + int(current[3:])        
         correct = 60 * int(correct[:2]) + int(correct[3:])
         target = correct - current
         nums = [60, 15, 5, 1]
-        i = 0
-        while i < len(nums):        
-            ans += nums[i]
-            if ans > target:
-                ans -= nums[i]
-                i += 1
-            else:
+        
+        for i in nums:
+            while target >= i:
+                target -= i
                 ret += 1
-                if ans == target:
-                    return ret
-        return 0
+        return ret
+                
+        
+        
+        
+        
+        # i = 0
+        # while i < len(nums):        
+        #     ans += nums[i]
+        #     if ans > target:
+        #         ans -= nums[i]
+        #         i += 1
+        #     else:
+        #         ret += 1
+        #         if ans == target:
+        #             return ret
+        # return 0
             
             
 #         def dfs(target):
