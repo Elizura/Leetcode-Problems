@@ -1,10 +1,15 @@
 class Solution:
-    def convertTime(self, current: str, correct: str) -> int: 
+    def convertTime(self, current: str, correct: str) -> int:
+        def convert(t):
+            a, b = list(map(int, t.split(':')))
+            return 60*a + b
         ret = 0
         # ans = 0
         # memo = {}
-        current = 60 * int(current[:2]) + int(current[3:])        
-        correct = 60 * int(correct[:2]) + int(correct[3:])
+        # current = 60 * int(current[:2]) + int(current[3:])        
+        # correct = 60 * int(correct[:2]) + int(correct[3:])
+        current = convert(current)
+        correct = convert(correct)
         target = correct - current
         nums = [60, 15, 5, 1]
         
