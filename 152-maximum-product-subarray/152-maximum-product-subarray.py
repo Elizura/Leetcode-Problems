@@ -4,7 +4,7 @@ class Solution:
         for n in nums[1:]:
             t = [n, minProd*n, maxProd*n]
             minProd, maxProd = min(t), max(t)     
-            result = max(result, minProd, maxProd)            
+            result = max(result, maxProd)            
         return result
         # maks = [i for i in nums]
         # mean = [i for i in nums]
