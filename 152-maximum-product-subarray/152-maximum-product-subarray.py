@@ -9,8 +9,7 @@ class Solution:
                 mean[i] = min(nums[i]*mean[i - 1], nums[i])
             else:
                 maks[i] = max(nums[i]*mean[i - 1], nums[i])
-                mean[i] = min(nums[i]*maks[i - 1], nums[i])                
-                
+                mean[i] = min(nums[i]*maks[i - 1], nums[i])       
         return max(maks)
         # max_ = -inf
         # j = 0
