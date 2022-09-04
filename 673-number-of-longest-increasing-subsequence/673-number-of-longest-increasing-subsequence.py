@@ -24,12 +24,14 @@ class Solution:
         for i in range(len(nums)):
             for j in range(i):
                 if nums[j] < nums[i]:
+                    if dp[i] == dp[j] + 1:
+                        cnt[i] += cnt[j]
                     
-                    if dp[i] < dp[j] + 1:
+                    elif dp[i] < dp[j] + 1:
                         dp[i] = dp[j] + 1
                         cnt[i] = cnt[j]
-                    elif dp[i] == dp[j] + 1:
-                        cnt[i] += cnt[j]
+                    # elif dp[i] == dp[j] + 1:
+                    #     cnt[i] += cnt[j]
                         
             maxSoFar = max(maxSoFar, dp[i])
             
