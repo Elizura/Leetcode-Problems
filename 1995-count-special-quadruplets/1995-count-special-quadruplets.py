@@ -1,5 +1,6 @@
 class Solution:
     def countQuadruplets(self, nums: List[int]) -> int:
+        #very much brute force O(n^4)
         ans = 0
         for i in range(len(nums)):
             for j in range(i + 1, len(nums)):
