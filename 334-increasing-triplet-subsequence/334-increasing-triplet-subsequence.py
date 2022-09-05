@@ -1,5 +1,7 @@
 class Solution:
     def increasingTriplet(self, nums: List[int]) -> bool:
+        
+        #O(n) time and O(1) space
         _min = nums[0]
         _max = inf
         for i in nums[1:]:
@@ -12,6 +14,7 @@ class Solution:
         return False
                 
         
+        #O(n) time and O(n) space
         
 #         _min = [nums[0]]
 #         _max = [nums[-1] for i in range(len(nums))]
