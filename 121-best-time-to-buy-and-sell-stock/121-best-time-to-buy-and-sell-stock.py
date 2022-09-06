@@ -1,14 +1,27 @@
 class Solution:
     def maxProfit(self, prices: List[int]) -> int:
-        low = prices[0]
-        max_profit = 0
+        _min = prices[0]
+        ans = 0
         for i in range(1, len(prices)):
-            profit = prices[i] - low
-            max_profit = max(max_profit, profit)
-            low = min(prices[i], low)
-        return max_profit
+            profit = prices[i] - _min
+            ans = max(ans, profit)
+            _min = min(_min, prices[i])
+        return ans
+        # tab = [0 for i in range(len(prices))]
+        # for i in range(1, len(tab)):
+        #     for j in range(i):
+        #         if prices[i] > prices[j]:
+        #             tab[i] = max(tab[i], prices[i] - prices[j])
+        # return max(tab)
             
             
+#         low = prices[0]
+#         max_profit = 0
+#         for i in range(1, len(prices)):
+#             profit = prices[i] - low
+#             max_profit = max(max_profit, profit)
+#             low = min(prices[i], low)
+#         return max_profit
         
         
         # max_profit = 0
