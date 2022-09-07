@@ -3,9 +3,10 @@ class Solution:
         cur = 0
         a, b = 0, 1
         for i in range(1, n + 1):
-            cur = b + a
-            a = b
-            b = cur            
+            a, b = b, b + a
+            # cur = b + a
+            # a = b
+            # b = cur            
         return b
 
 #         storage = {}
