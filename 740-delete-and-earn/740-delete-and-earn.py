@@ -1,7 +1,7 @@
 class Solution:
     def deleteAndEarn(self, nums: List[int]) -> int:
         count = collections.Counter(nums)
-        nums = sorted(list(set(nums)))
+        nums = list(set(nums))
         a, b = 0, 0
         for i in range(len(nums)):
             if i > 0 and nums[i] == nums[i - 1] + 1:
