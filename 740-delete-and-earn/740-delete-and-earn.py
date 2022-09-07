@@ -1,24 +1,33 @@
 class Solution:
     def deleteAndEarn(self, nums: List[int]) -> int:
-        # count = collections.Counter(nums)
-        # nums = sorted(list(set(nums)))
-        # a, b = 0, 0
-        # for i in nums
-        
         count = collections.Counter(nums)
-        nums = list(set(nums))
-        nums.sort()
-        tab = [0 for i in nums]
-        tab[0] = nums[0]*count[nums[0]]
-        for i in range(1, len(nums)):            
-            if nums[i] == nums[i - 1] + 1:
-                if i - 2 >= 0:
-                    tab[i] = max(tab[i - 2] + nums[i] * count[nums[i]], tab[i - 1])
-                else:
-                    tab[i] = max(nums[i]*count[nums[i]], tab[i - 1])
-            elif nums[i] > nums[i - 1] + 1:
-                tab[i] = tab[i - 1] + nums[i]*count[nums[i]]            
-        return tab[-1]
+        nums = sorted(list(set(nums)))
+        a, b = 0, 0
+        for i in range(len(nums)):
+            if i > 0 and nums[i] == nums[i - 1] + 1:
+                temp = b
+                b = max(a + nums[i] * count[nums[i]], b)
+                a = temp
+            else:
+                temp = b
+                b = b + nums[i] * count[nums[i]]
+                a = temp
+        return b
+        
+        # count = collections.Counter(nums)
+#         nums = list(set(nums))
+#         nums.sort()
+#         tab = [0 for i in nums]
+#         tab[0] = nums[0]*count[nums[0]]
+#         for i in range(1, len(nums)):            
+#             if nums[i] == nums[i - 1] + 1:
+#                 if i - 2 >= 0:
+#                     tab[i] = max(tab[i - 2] + nums[i] * count[nums[i]], tab[i - 1])
+#                 else:
+#                     tab[i] = max(nums[i]*count[nums[i]], tab[i - 1])
+#             elif nums[i] > nums[i - 1] + 1:
+#                 tab[i] = tab[i - 1] + nums[i]*count[nums[i]]            
+#         return tab[-1]
         
         
         # c, res, r=collections.Counter(nums), 0, 0
