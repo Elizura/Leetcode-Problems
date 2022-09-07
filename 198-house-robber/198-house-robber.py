@@ -3,31 +3,7 @@ class Solution:
         a, b = 0, 0
         for i in nums:
             a, b = b, max(a + i, b)
-        return b
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
+        return b                                                                                                
             
         # rob1, rob2 = 0, 0
         # for n in nums:
