@@ -5,13 +5,9 @@ class Solution:
         a, b = 0, 0
         for i in range(len(nums)):
             if i > 0 and nums[i] == nums[i - 1] + 1:
-                temp = b
-                b = max(a + nums[i] * count[nums[i]], b)
-                a = temp
+                a, b = b, max(a + nums[i] * count[nums[i]], b)
             else:
-                temp = b
-                b = b + nums[i] * count[nums[i]]
-                a = temp
+                a, b = b, b + nums[i] * count[nums[i]]
         return b
         
         # count = collections.Counter(nums)
@@ -30,12 +26,12 @@ class Solution:
 #         return tab[-1]
         
         
-        # c, res, r=collections.Counter(nums), 0, 0
-        # for i in set(c):
-        #     if not c[i-1]: l, r, res = 0,0,res + r
-        #     l, r= r, max(l + c[i]*i, r)
-        # return (res + r)
-#         def dfs(idx, amt, memo = {}):
+#         c, res, r=collections.Counter(nums), 0, 0
+#         for i in set(c):
+#             if not c[i-1]: l, r, res = 0,0,res + r
+#             l, r= r, max(l + c[i]*i, r)
+#         return (res + r)
+# #         def dfs(idx, amt, memo = {}):
 #             if (idx, amt) in memo: return memo[(idx, amt)]
 #             if idx >= len(nums): return amt
 #             if idx + 1 < len(nums):
