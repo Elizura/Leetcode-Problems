@@ -1,5 +1,10 @@
 class Solution:
     def deleteAndEarn(self, nums: List[int]) -> int:
+        # count = collections.Counter(nums)
+        # nums = sorted(list(set(nums)))
+        # a, b = 0, 0
+        # for i in nums
+        
         count = collections.Counter(nums)
         nums = list(set(nums))
         nums.sort()
@@ -13,7 +18,9 @@ class Solution:
                     tab[i] = max(nums[i]*count[nums[i]], tab[i - 1])
             elif nums[i] > nums[i - 1] + 1:
                 tab[i] = tab[i - 1] + nums[i]*count[nums[i]]            
-        return max(tab)
+        return tab[-1]
+        
+        
         # c, res, r=collections.Counter(nums), 0, 0
         # for i in set(c):
         #     if not c[i-1]: l, r, res = 0,0,res + r
