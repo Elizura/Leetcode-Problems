@@ -2,15 +2,36 @@ class Solution:
     def deleteAndEarn(self, nums: List[int]) -> int:
         count = collections.Counter(nums)
         nums = list(set(nums))
-        a, b = 0, 0
-        for i in range(len(nums)):
-            if i > 0 and nums[i] == nums[i - 1] + 1:
-                a, b = b, max(a + nums[i] * count[nums[i]], b)
-            else:
-                a, b = b, b + nums[i] * count[nums[i]]
-        return b
+        def dfs(idx):
+            if dp[idx] != 0: return dp[idx]
+            if idx < 0: return 0
+            if idx == 0: return dp[0]
+            if nums[idx] == nums[idx - 1] + 1:
+                take = dfs(idx - 2) + nums[idx]*count[nums[idx]]
+                not_take = dfs(idx - 1)
+                dp[idx] = max(take, not_take)
+                return dp[idx]
+            if nums[idx] > nums[idx - 1] + 1:
+                take = dfs(idx - 1) + nums[idx]*count[nums[idx]]
+                not_take = dfs(idx - 1)
+                dp[idx] = max(take, not_take)
+                return dp[idx]
+        dp = [0 for i in range(len(nums))]
+        dp[0] = nums[0]*count[nums[0]]
+        return dfs(len(nums) - 1)
+            
+            
+#         count = collections.Counter(nums)
+#         nums = list(set(nums))
+#         a, b = 0, 0
+#         for i in range(len(nums)):
+#             if i > 0 and nums[i] == nums[i - 1] + 1:
+#                 a, b = b, max(a + nums[i] * count[nums[i]], b)
+#             else:
+#                 a, b = b, b + nums[i] * count[nums[i]]
+#         return b
         
-        # count = collections.Counter(nums)
+#         count = collections.Counter(nums)
 #         nums = list(set(nums))
 #         nums.sort()
 #         tab = [0 for i in nums]
@@ -30,8 +51,10 @@ class Solution:
 #         for i in set(c):
 #             if not c[i-1]: l, r, res = 0,0,res + r
 #             l, r= r, max(l + c[i]*i, r)
-#         return (res + r)
-# #         def dfs(idx, amt, memo = {}):
+        # return (res + r)
+    
+    
+#         def dfs(idx, amt, memo = {}):
 #             if (idx, amt) in memo: return memo[(idx, amt)]
 #             if idx >= len(nums): return amt
 #             if idx + 1 < len(nums):
@@ -50,6 +73,7 @@ class Solution:
 #         nums = list(set(nums))
 #         nums.sort()        
 #         return dfs(0, 0)
+
         
 #         count = Counter(nums)
 #         m = max(nums)
