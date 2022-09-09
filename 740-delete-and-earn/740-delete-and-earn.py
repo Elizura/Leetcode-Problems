@@ -1,33 +1,45 @@
 class Solution:
     def deleteAndEarn(self, nums: List[int]) -> int:
-        count = collections.Counter(nums)
+        cnt = collections.Counter(nums)
         nums = list(set(nums))
-        def dfs(idx):
-            if dp[idx] != 0: return dp[idx]
-            if idx < 0: return 0
-            if idx == 0: return dp[0]
-            if nums[idx] == nums[idx - 1] + 1:
-                take = dfs(idx - 2) + nums[idx]*count[nums[idx]]
-                not_take = dfs(idx - 1)
-                dp[idx] = max(take, not_take)
-                return dp[idx]
-            if nums[idx] > nums[idx - 1] + 1:                                
-                dp[idx] = dfs(idx - 1) + nums[idx]*count[nums[idx]]
-                return dp[idx]
-        dp = [0 for i in range(len(nums))]
-        dp[0] = nums[0]*count[nums[0]]
-        return dfs(len(nums) - 1)
-            
-            
+        a, b = 0, 0
+        for i in range(len(nums)):
+            if nums[i] == nums[i - 1] + 1:
+                a, b = b, max(b, a + nums[i] * cnt[nums[i]])
+            else:
+                a, b = b, b + nums[i] * cnt[nums[i]]
+        return b
+        
+        
+        
 #         count = collections.Counter(nums)
 #         nums = list(set(nums))
-#         a, b = 0, 0
-#         for i in range(len(nums)):
-#             if i > 0 and nums[i] == nums[i - 1] + 1:
-#                 a, b = b, max(a + nums[i] * count[nums[i]], b)
-#             else:
-#                 a, b = b, b + nums[i] * count[nums[i]]
-#         return b
+#         def dfs(idx):
+#             if dp[idx] != 0: return dp[idx]
+#             if idx < 0: return 0
+#             if idx == 0: return dp[0]
+#             if nums[idx] == nums[idx - 1] + 1:
+#                 take = dfs(idx - 2) + nums[idx]*count[nums[idx]]
+#                 not_take = dfs(idx - 1)
+#                 dp[idx] = max(take, not_take)
+#                 return dp[idx]
+#             if nums[idx] > nums[idx - 1] + 1:                                
+#                 dp[idx] = dfs(idx - 1) + nums[idx]*count[nums[idx]]
+#                 return dp[idx]
+#         dp = [0 for i in range(len(nums))]
+#         dp[0] = nums[0]*count[nums[0]]
+#         return dfs(len(nums) - 1)
+            
+            
+        count = collections.Counter(nums)
+        nums = list(set(nums))
+        a, b = 0, 0
+        for i in range(len(nums)):
+            if i > 0 and nums[i] == nums[i - 1] + 1:
+                a, b = b, max(a + nums[i] * count[nums[i]], b)
+            else:
+                a, b = b, b + nums[i] * count[nums[i]]
+        return b
         
 #         count = collections.Counter(nums)
 #         nums = list(set(nums))
