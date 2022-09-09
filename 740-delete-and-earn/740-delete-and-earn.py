@@ -11,10 +11,8 @@ class Solution:
                 not_take = dfs(idx - 1)
                 dp[idx] = max(take, not_take)
                 return dp[idx]
-            if nums[idx] > nums[idx - 1] + 1:
-                take = dfs(idx - 1) + nums[idx]*count[nums[idx]]
-                not_take = dfs(idx - 1)
-                dp[idx] = max(take, not_take)
+            if nums[idx] > nums[idx - 1] + 1:                                
+                dp[idx] = dfs(idx - 1) + nums[idx]*count[nums[idx]]
                 return dp[idx]
         dp = [0 for i in range(len(nums))]
         dp[0] = nums[0]*count[nums[0]]
