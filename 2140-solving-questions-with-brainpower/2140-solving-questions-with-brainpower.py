@@ -1,35 +1,42 @@
 class Solution:
     def mostPoints(self, questions: List[List[int]]) -> int:
-        tab = [i[0] for i in questions]
-        for i in range(len(questions) - 2, -1, -1):
-            if i + questions[i][-1] + 1 < len(tab):
-                tab[i] = max(questions[i][0] + tab[i + questions[i][-1] + 1], tab[i + 1])
-            else:
-                tab[i] = max(tab[i], tab[i + 1])
-        return max(tab)
+        def dfs(idx):
+            if idx > len(questions) - 1: return 0
+            if idx == len(questions) - 1: return dp[-1]
+            if dp[idx] != -1: return dp[idx]
+            take = questions[idx][0] + dfs(idx + questions[idx][1] + 1)
+            not_take = dfs(idx + 1)
+            dp[idx] = max(take, not_take)
+            return dp[idx]
+        dp = [-1 for i in range(len(questions))]
+        dp[-1] = questions[-1][0]
+        return dfs(0)
+        
+        
+        
+#         def dfs(idx, pts, memo = {}):
+#             if (idx, pts) in memo: return memo[(idx, pts)]
+#             if idx >= len(questions): return pts
             
+#             solve = dfs(idx + questions[idx][-1] + 1, pts + questions[idx][0])
+#             dont = dfs(idx + 1, pts)
+            
+#             memo[(idx, pts)] = max(solve, dont)
+#             return memo[(idx, pts)]
+        
+#         return dfs(0, 0)
         
         
         
         
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+#         tab = [i[0] for i in questions]
+#         for i in range(len(questions) - 2, -1, -1):
+#             if i + questions[i][-1] + 1 < len(tab):
+#                 tab[i] = max(questions[i][0] + tab[i + questions[i][-1] + 1], tab[i + 1])
+#             else:
+#                 tab[i] = max(tab[i], tab[i + 1])
+#         return max(tab)                                 
         
         
 #         n = len(questions)
@@ -57,14 +64,3 @@ class Solution:
 #         for i in questions:
 #             a, b = b, max(i[0])
         
-#         def dfs(idx, pts, memo = {}):
-#             if (idx, pts) in memo: return memo[(idx, pts)]
-#             if idx >= len(questions): return pts
-            
-#             solve = dfs(idx + questions[idx][-1] + 1, pts + questions[idx][0])
-#             dont = dfs(idx + 1, pts)
-            
-#             memo[(idx, pts)] = max(solve, dont)
-#             return memo[(idx, pts)]
-        
-#         return dfs(0, 0)
