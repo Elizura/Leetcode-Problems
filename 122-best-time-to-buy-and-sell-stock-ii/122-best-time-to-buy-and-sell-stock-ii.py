@@ -9,15 +9,11 @@ class Solution:
                 else:
                     return 0
             if not bought:
-                buy = -prices[idx] + dfs(idx + 1, True)
-                skip = dfs(idx + 1, False)
-                memo[(idx, bought)] = max(buy, skip)
-                return max(buy, skip)
+                memo[(idx, bought)] = max(-prices[idx] + dfs(idx + 1, True), dfs(idx + 1, False))
+                return memo[(idx, bought)]
             else:
-                sell = prices[idx] + dfs(idx + 1, False)
-                skip = dfs(idx + 1, True)
-                memo[(idx, bought)] = max(sell, skip)
-                return max(sell, skip)
+                memo[(idx, bought)] = max(prices[idx] + dfs(idx + 1, False), dfs(idx + 1, True))
+                return memo[(idx, bought)]
         memo = {}
         memo[(len(prices) - 1, True)] = prices[-1]
         return dfs(0, False)
