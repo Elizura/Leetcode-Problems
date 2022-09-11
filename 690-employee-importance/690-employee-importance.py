@@ -9,9 +9,12 @@ class Employee:
 
 class Solution:
     def getImportance(self, employees: List['Employee'], id: int) -> int:
+        seen = set()
         ans = 0
         def dfs(idx):
             nonlocal ans
+            if idx in seen: return 0
+            seen.add(idx)
             for i in employees:
                 if i.id == idx:
                     ans += i.importance
