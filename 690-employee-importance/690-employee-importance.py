@@ -9,6 +9,7 @@ class Employee:
 
 class Solution:
     def getImportance(self, employees: List['Employee'], id: int) -> int:
+        #O(N) time and O(N) space
         dic = {_.id: _ for _ in employees}
         def dfs(idx):
             employee = dic[idx]
