@@ -1,14 +1,14 @@
 class Solution:
     def jump(self, nums: List[int]) -> int:
-        leng = len(nums)
-        if leng == 1: return 0
+        N = len(nums)
+        if N == 1: return 0
         @cache
-        def dfs(loc):
-            if loc + nums[loc] >= leng-1: return 1
-            elif loc == leng-1: return 0
+        def dfs(idx):
+            if idx + nums[idx] >= N - 1: return 1
+            elif idx == N - 1: return 0
             step = inf			
-            for i in range(1, nums[loc]+1):
-                sub = 1 + dfs(loc+i)
+            for i in range(1, nums[idx]+1):
+                sub = 1 + dfs(idx + i)
                 step = min(sub, step)
             return step
         return dfs(0)
