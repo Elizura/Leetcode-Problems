@@ -1,17 +1,32 @@
 class Solution:
     def jump(self, nums: List[int]) -> int:
-        N = len(nums)
-        if N == 1: return 0
-        @cache
-        def dfs(idx):
-            if idx + nums[idx] >= N - 1: return 1
-            elif idx == N - 1: return 0
-            step = inf			
-            for i in range(1, nums[idx]+1):
-                sub = 1 + dfs(idx + i)
-                step = min(sub, step)
-            return step
-        return dfs(0)
+        ans = 0
+        left = right = 0
+        while right < len(nums) - 1:
+            farthest = 0
+            for i in range(left, right + 1):
+                farthest = max(farthest, i + nums[i])
+            left = right + 1
+            right = farthest
+            ans += 1
+        return ans
+        
+#         N = len(nums)
+#         if N == 1: return 0
+#         # @cache
+#         def dfs(idx):
+#             if dp[idx] != inf: return dp[idx]
+#             if idx + nums[idx] >= N - 1: return 1
+#             elif idx == N - 1: return 0
+#             step = inf			
+#             for i in range(1, nums[idx]+1):
+#                 sub = 1 + dfs(idx + i)
+#                 step = min(sub, step)
+#             dp[idx] = step
+#             return step
+#         dp = [inf for i in range(len(nums))]
+#         return dfs(0)
+    
     
         # leng = len(nums)
         # if leng == 1: return 0
