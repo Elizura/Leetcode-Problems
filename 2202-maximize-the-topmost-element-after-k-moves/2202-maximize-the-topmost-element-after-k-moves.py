@@ -10,4 +10,4 @@ class Solution:
         elif k > n:
             return max(nums)
         else:
-            return max(nums[:k-1] + nums[k:k+1])
+            return max(nums[:k-1] + [nums[k]])
