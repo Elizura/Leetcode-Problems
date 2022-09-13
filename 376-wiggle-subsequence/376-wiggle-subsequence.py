@@ -1,10 +1,12 @@
 class Solution:
     def wiggleMaxLength(self, nums: List[int]) -> int:
+        
+        #O(N) time and O(1) space
         if not nums:
             return 0
         
         length = 1
-        up = None
+        up = None # current is increasing or not
         for i in range(1, len(nums)):
             if nums[i] > nums[i - 1] and up != True:
                 length += 1
