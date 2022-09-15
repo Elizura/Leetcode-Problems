@@ -7,10 +7,10 @@ class Solution:
                     trips += timee//i
             return trips >= totalTrips
         l, r = 1, min(time)*totalTrips
-        while r >= l:
+        while r > l:
             m = (l + r) // 2
             if cantrip(m):
-                r = m - 1
+                r = m 
             else:
                 l = m + 1
         return l
