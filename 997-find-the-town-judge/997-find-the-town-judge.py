@@ -1,43 +1,20 @@
 class Solution:
     def findJudge(self, n: int, trust: List[List[int]]) -> int:
         if n == 1: return 1
-        trust_set = list(set(sum(trust, [])))
-        N = len(trust_set)
-        dic = {i:[0, 0] for i in trust_set} #[indegree, outdegree]
-        for i in trust:
-            dic[i[0]][1] += 1
-            dic[i[1]][0] += 1
+        # trust_set = list(set(sum(trust, [])))
+        # N = len(trust_set)
+        dic = {i:[0, 0] for i in range(1, n + 1)} #[indegree, outdegree]
+        for i, v in trust:
+            dic[v][0] += 1
+            dic[i][1] += 1
         for key in dic:
             if dic[key][1] == 0:
-                if dic[key][0] == N - 1:
+                if dic[key][0] == n - 1:
                     return key
-        return -1
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+        return -1                              
+
+    
+    
 #         if not trust and n == 1:
 # 			return 1
 # 		degree = [0 for i in range(0,n+1)]
