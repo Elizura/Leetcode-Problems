@@ -9,5 +9,5 @@ class Solution:
             if not turn % 2: #Alice turn
                 return max(piles[l] + dfs(l + 1, r), piles[r] + dfs(l, r - 1))
             else: #Bob's turn 
-                return max(-piles[l] + dfs(l + 1, r), -piles[r] + dfs(l, r - 1))
+                return min(-piles[l] + dfs(l + 1, r), -piles[r] + dfs(l, r - 1))
         return dfs(0, N - 1) > 0
