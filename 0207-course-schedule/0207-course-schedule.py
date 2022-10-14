@@ -1,29 +1,50 @@
 class Solution:
     def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
+        rec = [False] * numCourses
+        visited = [False] * numCourses
+            
         graph = defaultdict(list)
-        topo = []
-        ind = [0] * numCourses
-        seen = [False] * numCourses
+        def checkcyc(node):                        
+            visited[node] = True
+            rec[node] = True
+            for neighb in graph[node]:
+                if visited[neighb] == False:
+                    if checkcyc(neighb): return True                
+                elif rec[neighb]: return True
+            rec[node] = False
+            return False
+            
         for a, b in prerequisites:
             graph[b].append(a)        
-        for a, _ in prerequisites:
-            ind[a] += 1
-        q = deque()
-        for i in range(numCourses):
-            if ind[i] == 0:
-                seen[i] = True
-                q.append(i)
-        while q:
-            a = q.popleft()
-            topo.append(a)
-            for n in graph[a]:
-                if not seen[n]:
-                    ind[n] -= 1
-                    if ind[n] == 0:
-                        q.append(n)
-                        seen[n] = True 
+        for node in range(numCourses):            
+            if visited[node] == False and checkcyc(node):
+                return False
+        return True
+    
+#         graph = defaultdict(list)
+#         topo = []
+#         ind = [0] * numCourses
+#         seen = [False] * numCourses
+#         for a, b in prerequisites:
+#             graph[b].append(a)        
+#         for a, _ in prerequisites:
+#             ind[a] += 1
+#         q = deque()
+#         for i in range(numCourses):
+#             if ind[i] == 0:
+#                 seen[i] = True
+#                 q.append(i)
+#         while q:
+#             a = q.popleft()
+#             topo.append(a)
+#             for n in graph[a]:
+#                 if not seen[n]:
+#                     ind[n] -= 1
+#                     if ind[n] == 0:
+#                         q.append(n)
+#                         seen[n] = True 
                                 
-        return len(topo) == numCourses
+#         return len(topo) == numCourses
         # can = [False for _  in range(numCourses)]
 #         preq = {sub: [] for sub in range(numCourses)}
 #         for i, j in prerequisites:
