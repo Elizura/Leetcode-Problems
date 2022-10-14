@@ -5,7 +5,7 @@ class Solution:
         for a, b in edges:
             graph[a].append(b)   
             indegree[b] += 1        
-        ans = [[] for _ in range(n)]             
+        ans = [set() for _ in range(n)]             
         q = deque()
         visited = [False] * n
         for i in range(n):
@@ -14,13 +14,12 @@ class Solution:
         while q:
             a = q.popleft()
             for n in graph[a]:                
-                if not visited[n]:                    
-                    for i in ans[a]:                        
-                        ans[n].append(i)                        
-                    ans[n].append(a)    
-                    ans[n] = sorted(list(set(ans[n])))
+                if not visited[n]:
+                    ans[n].add(a)
+                    ans[n].update(ans[a])
                     indegree[n] -= 1
                     if indegree[n] == 0:
                         q.append(n)
-                        visited[n] = True            
+                        visited[n] = True 
+        ans = [sorted(list(s)) for s in ans]
         return ans
