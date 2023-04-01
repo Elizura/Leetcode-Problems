@@ -3,8 +3,10 @@ class Solution:
         ans = []
         for i in range(n + 1):            
             ct = 0
-            for j in range(17):
+            j = 0
+            while 1 << j <= i:            
                 if (1 << j) & i != 0:
                     ct += 1
+                j += 1
             ans.append(ct)
         return ans
