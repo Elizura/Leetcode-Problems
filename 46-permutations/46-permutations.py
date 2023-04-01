@@ -16,7 +16,8 @@ class Solution:
                 per.append(nums[i]) 
                 backtracking(mask)           
                 # included.remove(nums[i])
-                mask -= 1 << i
+                mask &= ~(1<<i)
+                # mask -= 1 << i
                 per.remove(nums[i])
         backtracking(mask)
         return ans
